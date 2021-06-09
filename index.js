@@ -18,11 +18,15 @@ server.listen(8888, () => {
 	console.log("Server is runing port 8888");
 });
 
-io.on("connection", (socket) => {
-	console.log("Co nguoi ket noi: ", socket.id);
+io.on("connection", (client) => {
+	console.log("Co nguoi ket noi: ", client.id);
 
-	socket.on("disconnect", () => {
-		console.log(socket.id + " ngat ket noi");
+	client.on("disconnect", () => {
+		console.log(client.id + " da ngat ket noi");
+	});
+
+	client.on("client-send-data", (data) => {
+		console.log("Client send: ", data);
 	});
 });
 

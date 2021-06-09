@@ -6,16 +6,23 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="jquery-3.6.0.js"></script>
 		<script src="socket.io/socket.io.js"></script>
+		<script>
+			const socket = io("http://localhost:8888/");
+			$(document).ready(() => {
+				$("#btn-send").click((ev) => {
+					socket.emit("client-send-data", "Hello");
+				});
+			});
+		</script>
 		<title>Learning SocketIO</title>
 	</head>
 	<body>
 		<h1>SocketIO - Learning</h1>
-		<script>
-			const socket = io("http://localhost:8888/");
-
-			$(document).ready(() => {
-				// alert("Halo");
-			});
-		</script>
+		<div
+			id="btn-send"
+			style="display: inline-block; background-color: coral; cursor: pointer"
+		>
+			Click send
+		</div>
 	</body>
 </html>
