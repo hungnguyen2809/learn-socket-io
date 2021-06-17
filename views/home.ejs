@@ -8,6 +8,10 @@
 		<script src="socket.io/socket.io.js"></script>
 		<script>
 			const socket = io("http://localhost:8888/");
+			socket.on("server-send-data", (data) => {
+				$("#noidung").append(data + ", ");
+			});
+
 			$(document).ready(() => {
 				$("#btn-send").click((ev) => {
 					socket.emit("client-send-data", "Hello");
@@ -24,5 +28,7 @@
 		>
 			Click send
 		</div>
+		<!-- <div id="list-data"></div> -->
+		<h3 id="noidung"></h3>
 	</body>
 </html>

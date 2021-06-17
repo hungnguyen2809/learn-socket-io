@@ -26,7 +26,22 @@ io.on("connection", (client) => {
 	});
 
 	client.on("client-send-data", (data) => {
-		console.log("Client send: ", data);
+		console.log(`Client ${client.id} send: `, data);
+
+		//server trả về full cho toàn bộ client connect đến server.
+		// io.sockets.emit(
+		// 	"server-send-data",
+		// 	`Hello Client, Data your send: ${data}`
+		// );
+
+		//server trả về cho duy nhất cho client nào gửi lên
+		// client.emit("server-send-data", `Server send: ${data}`);
+
+		//server trả về cho toàn bộ client connect đến trừ client gửi lên
+		// client.broadcast.emit("server-send-data", `Server send: ${data}`);
+
+		//Chỉ muốn gửi trả về cho một client nhất định
+		// io.to(“id socket”).emit : dùng để emit riêng đến một client nào đó (1-1).
 	});
 });
 
