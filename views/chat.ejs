@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Chat SocketIO</title>
+		<script src="jquery-3.6.0.js"></script>
+		<script src="socket.io/socket.io.js"></script>
+		<script src="xulychat.js"></script>
+		<link rel="stylesheet" type="text/css" href="layout.css" />
+	</head>
+	<body>
+		<h3>Chat SocketIO</h3>
+		<div class="wrapper">
+			<div class="login-form">
+				<h3>WHAT IS YOUR NAME?</h3>
+				<input
+					type="text"
+					name="username"
+					placeholder="Enter your username"
+					id="txtUsername"
+				/>
+				<button id="btnLogin" type="submit">Register</button>
+			</div>
+			<div class="chat-form">
+				<div class="chat-member">
+					<h3 class="title">Member Online</h3>
+					<hr />
+					<div id="listUsers" class="content">
+						<!-- <p class="menber-online">Teo Nguyen</p> -->
+					</div>
+				</div>
+				<div class="chat-message">
+					<h3 class="title">Chat</h3>
+					<hr />
+					<div class="content">
+						<div class="current-user">
+							<p>
+								My Account:
+								<span id="currentUser" class="current-user-name">Teo</span>
+							</p>
+							<button id="btnLogout" type="button">Logout</button>
+						</div>
+						<div id="listMessages" class="current-message">
+							<!-- <p class="line-message">
+								<span class="current-user-name">Teo Em: </span>
+								<span> Alo alo alo alo alo alo </span>
+							</p> -->
+						</div>
+						<div class="send-message">
+							<input
+								type="text"
+								name="message"
+								id="txtMessage"
+								placeholder="Enter message"
+							/>
+							<button id="btnSend" type="button">Send</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
