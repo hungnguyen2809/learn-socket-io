@@ -6,14 +6,54 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="jquery-3.6.0.js"></script>
 		<script src="socket.io/socket.io.js"></script>
+		<style>
+			.btn-color {
+				width: 100px;
+				height: 50px;
+				margin: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+			}
+			.area-change-color {
+				width: 200px;
+				height: 150px;
+			}
+		</style>
 		<script>
 			const socket = io("http://localhost:8888/");
 
-			$(document).ready(() => {});
+			$(document).ready(() => {
+				$("#btn-red").click(() => {
+					socket.emit("handle-change-color", "red");
+				});
+				$("#btn-green").click(() => {
+					socket.emit("handle-change-color", "greenyellow");
+				});
+				$("#btn-orange").click(() => {
+					socket.emit("handle-change-color", "orange");
+				});
+			});
+
+			socket.on("serve-send-color", (color) => {
+				$("#background-change").css("background-color", color);
+			});
 		</script>
 		<title>Learning SocketIO</title>
 	</head>
 	<body>
 		<h1>SocketIO - Learning Change Background Color</h1>
+		<br />
+		<div class="btn-color" id="btn-red" style="background-color: red">
+			<span>Đỏ</span>
+		</div>
+		<div class="btn-color" id="btn-green" style="background-color: greenyellow">
+			<span>Xanh</span>
+		</div>
+		<div class="btn-color" id="btn-orange" style="background-color: orange">
+			<span>Cam</span>
+		</div>
+		<div id="background-change" class="area-change-color"></div>
 	</body>
 </html>

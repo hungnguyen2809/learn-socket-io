@@ -19,6 +19,11 @@ server.listen(8888, () => {
 
 io.on("connection", (client) => {
 	console.log("Co nguoi ket noi: ", client.id);
+
+	client.on("handle-change-color", (data) => {
+		io.sockets.emit("serve-send-color", data);
+		// client.broadcast.emit("serve-send-color", data);
+	});
 });
 
 app.get("/", (req, res) => {
