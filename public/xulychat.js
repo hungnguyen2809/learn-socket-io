@@ -44,6 +44,14 @@ socket.on("server-send-message", (data) => {
 	$("#listMessages").html(messagesHTML);
 });
 
+socket.on("server-send-typing", (data) => {
+	//bắt sự kiện khi có người ngõ
+});
+
+socket.on("server-send-stop-typing", (data) => {
+	//bắt sự kiện khi có người không gõ
+});
+
 $(document).ready(() => {
 	$(".login-form").show();
 	$(".chat-form").hide();
