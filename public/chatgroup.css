@@ -1,0 +1,46 @@
+body {
+	box-sizing: border-box;
+}
+
+.main-rooms {
+	display: flex;
+	margin-top: 10px;
+}
+
+.list-rooms {
+	height: 600px;
+	width: 300px;
+	border: 1px solid gray;
+	margin: 10px;
+}
+
+.list-rooms h3 {
+	text-align: center;
+	margin: 5px;
+}
+
+.list-rooms h4 {
+	margin: 5px;
+	color: tomato;
+}
+
+.list-name-room {
+	padding: 5px;
+}
+
+.list-name-room p {
+	margin: 5px;
+	font-weight: bold;
+}
+
+.chat-rooms {
+	height: 600px;
+	width: 350px;
+	border: 1px solid gray;
+	margin: 10px;
+}
+
+.chat-rooms h3 {
+	text-align: center;
+	margin: 5px;
+}

@@ -22,21 +22,31 @@ io.on("connection", (socket) => {
 
 	//Hiển thị số lượng room đang có, mỗi một connect đến sẽ tạo ra 1 room mới
 	//lấy tên theo id của socket đó
-	console.log("Room: ", socket.rooms);
-	console.log("Room ALL: ", io.sockets.adapter.rooms);
+	// console.log("Room: ", socket.rooms);
+	// console.log("Room ALL: ", io.sockets.adapter.rooms);
 
+	// socket.on("create-room", (nameRoom) => {
+	// 	// join dùng để join vào một room nào đó với tham số là tên room, nếu room tồn tại
+	// 	// thì nó join vào còn nếu chưa tồn tại thì tạo room mới và đưa socket.id vào room đó.
+	// 	// 1 socket.id có thể join nhiều hơn 1 room => 1 socket.id vào được room A, room B, ...
+	// 	socket.join(nameRoom);
+	// 	console.log("Room: ", socket.rooms);
+	// 	console.log("Room ALL: ", io.sockets.adapter.rooms);
+	// });
+
+	// socket.on("leave-room", (nameRoom) => {
+	// 	// rời bỏ một room, khi trong tự động xóa khi không có socket.id nào ở trong
+	// 	socket.leave(nameRoom);
+	// });
+
+	// ----------------
 	socket.on("create-room", (nameRoom) => {
-		// join dùng để join vào một room nào đó với tham số là tên room, nếu room tồn tại
-		// thì nó join vào còn nếu chưa tồn tại thì tạo room mới và đưa socket.id vào room đó.
-		// 1 socket.id có thể join nhiều hơn 1 room => 1 socket.id vào được room A, room B, ...
 		socket.join(nameRoom);
-		console.log("Room: ", socket.rooms);
-		console.log("Room ALL: ", io.sockets.adapter.rooms);
-	});
+		socket.currentRoom = nameRoom;
 
-	socket.on("leave-room", (nameRoom) => {
-		// rời bỏ một room, khi trong tự động xóa khi không có socket.id nào ở trong
-		socket.leave(nameRoom);
+		const listRooms = Array.from(io.sockets.adapter.rooms.keys());
+		io.sockets.emit("server-send-rooms", JSON.stringify(listRooms));
+		socket.emit("server-send-current-room", socket.currentRoom);
 	});
 });
 
