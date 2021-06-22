@@ -48,6 +48,12 @@ io.on("connection", (socket) => {
 		io.sockets.emit("server-send-rooms", JSON.stringify(listRooms));
 		socket.emit("server-send-current-room", socket.currentRoom);
 	});
+
+	socket.on("user-send-message-chat", (data) => {
+		// Gửi lại cho toàn bộ tất cả những người nào có trong room, với tên room trong in
+		// socket.currentRoom => trả ra room hiện tại đang đứng khi tạo
+		io.sockets.in(socket.currentRoom).emit("server-send-mes-room", data);
+	});
 });
 
 app.get("/", (req, res) => {
